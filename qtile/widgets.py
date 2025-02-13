@@ -106,8 +106,28 @@ class MyWidgets:
             ),
             widget.TextBox(
                 text='',
-                foreground=self.colors["red"],
+                foreground=self.colors["blue"],
                 background=self.colors["bg"],
+                padding=-7,
+                fontsize=40
+            ),
+            widget.BatteryIcon(
+                foreground=self.colors["fg"],
+                background=self.colors["blue"],
+                theme_path="/home/coen/.config/qtile/icons/battery_theme",
+                update_interval=5,
+                padding=2,
+            ),
+            widget.Battery(
+                foreground=self.colors["fg"],
+                background=self.colors["blue"],
+                update_interval=5,
+                padding=5,
+            ),
+            widget.TextBox(
+                text='',
+                foreground=self.colors["red"],
+                background=self.colors["blue"],
                 padding=-7,
                 fontsize=40
             ),

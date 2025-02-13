@@ -28,8 +28,12 @@ class Keybindings:
         layout_up = Key(modifier, UP, lazy.layout.up())
 
         toogle_layout = Key(modifier, TOOGLE_LAYOUT, lazy.next_layout())
+        
+        ############   BINDINGS FOR TREETAB   ##############
+        layout_add_section = Key(modifier, GROW, lazy.layout.add_section())
+        layout_del_section = Key(modifier, SHRINK, lazy.layout.del_section())        
 
-        self.keys += [layout_left, layout_right, layout_down, layout_up, toogle_layout]
+        self.keys += [layout_left, layout_right, layout_down, layout_up, toogle_layout, layout_add_section, layout_del_section]
 
     def create_swap_keys(self):
         modifier = [MOVEMENT_KEY, SWAP_KEY]
