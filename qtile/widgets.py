@@ -115,13 +115,13 @@ class MyWidgets:
                 foreground=self.colors["fg"],
                 background=self.colors["blue"],
                 theme_path="/home/coen/.config/qtile/icons/battery_theme",
-                update_interval=5,
+                update_interval=1,
                 padding=2,
             ),
             widget.Battery(
                 foreground=self.colors["fg"],
                 background=self.colors["blue"],
-                update_interval=5,
+                update_interval=1,
                 padding=5,
             ),
             widget.TextBox(
@@ -223,12 +223,20 @@ class MyWidgets:
         '''
         widgets_screen2 = self.init_widgets_screen()
         return widgets_screen2
+    
+    def init_widgets_screen3(self):
+        '''
+        Function that returns the widgets in a list.
+        It can be modified so it is useful if you  have a multimonitor system
+        '''
+        widgets_screen3 = self.init_widgets_screen()
+        return widgets_screen3
 
     def init_screen(self):
         '''
         Init the widgets in the screen
         '''
         return [Screen(top=bar.Bar(widgets=self.init_widgets_screen(), opacity=1.0, size=22)),
-                Screen(top=bar.Bar(
-                    widgets=self.init_widgets_screen(), opacity=1.0, size=22))
+                Screen(top=bar.Bar(widgets=self.init_widgets_screen(), opacity=1.0, size=22)),
+                Screen(top=bar.Bar(widgets=self.init_widgets_screen(), opacity=1.0, size=22)),
                 ]
