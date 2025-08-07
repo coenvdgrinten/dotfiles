@@ -13,6 +13,7 @@ Command -> str() -> Ex: vscode
 """
 
 from libqtile.confreader import ConfigError
+from libqtile.lazy import lazy
 
 # Import default mod keys
 from keys.default import *
@@ -34,7 +35,13 @@ TERMINAL = "alacritty"
 SHUTDOWN_MODIFIER = [MOD, CONTROL]
 RESTART = "r"
 SHUTDOWN = "q"
+LOGOUT = "t"
+LOCK = "l"
 SCREEN_SETUP = "s"
+LAPTOP_SCREEN_SETUP = "1"
+LAPTOP_SCREEN_SETUP_SCRIPT = "laptop_screen_setup.sh"
+OFFICE_SCREEN_SETUP = "2"
+OFFICE_SCREEN_SETUP_SCRIPT = "screen_setup.sh"
 
 # Group movement keys:
 GROUPS_KEY = CONTROL
@@ -101,8 +108,25 @@ CUSTOM_SPAWN_KEYS = [
     ([MOD, ALT], "w", PWA.whatsapp()),
 ]
 
-
-SPAWN_KEYS = HARDWARE_KEYS + APPS + CUSTOM_SPAWN_KEYS
+SPAWN_KEYS = (
+    HARDWARE_KEYS
+    + APPS
+    + CUSTOM_SPAWN_KEYS
+    + [
+        # Keybinding to set output to laptop screen only
+        (
+            [MOD, CONTROL],
+            LAPTOP_SCREEN_SETUP,
+            f"bash {HOME}/.config/qtile/{LAPTOP_SCREEN_SETUP_SCRIPT}",
+        ),
+        # Keybinding to set output to office setup
+        (
+            [MOD, CONTROL],
+            OFFICE_SCREEN_SETUP,
+            f"bash {HOME}/.config/qtile/{OFFICE_SCREEN_SETUP_SCRIPT}",
+        ),
+    ]
+)
 
 SPAWN_CMD_KEYS = [
     # Takes full screenshot and creates a file on the screenshot folder

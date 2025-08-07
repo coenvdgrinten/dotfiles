@@ -69,17 +69,31 @@ bring_front_click = False
 cursor_warp = False
 
 
-floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    *layout.Floating.default_float_rules,
-    Match(wm_class='confirmreset'),  # gitk
-    Match(wm_class='dialog'),  # Dialogs stuff
-    Match(wm_class='makebranch'),  # gitk
-    Match(wm_class='maketag'),  # gitk
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
-])
+floating_layout = layout.Floating(
+    border_width=2,
+    border_focus="#fd7b83",  # Your red color for focused windows
+    border_normal="#9b9691", # Your grey color for unfocused windows
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class='confirmreset'),  # gitk
+        Match(wm_class='dialog'),  # Dialogs stuff
+        Match(wm_class='makebranch'),  # gitk
+        Match(wm_class='maketag'),  # gitk
+        Match(wm_class='ssh-askpass'),  # ssh-askpass
+        Match(title='branchdialog'),  # gitk
+        Match(title='pinentry'),  # GPG key password entry
+        # Add scratchpad to floating rules to ensure it gets borders
+        Match(wm_class='qtile-scratchpad'),
+        # Additional useful floating rules
+        Match(wm_class='pavucontrol'),  # Volume control
+        Match(wm_class='blueman-manager'),  # Bluetooth manager
+        Match(wm_class='nm-connection-editor'),  # Network manager
+        Match(wm_class='xfce4-screenshooter'),  # Screenshot tool
+        Match(title='Picture-in-Picture'),  # Firefox PiP
+        Match(wm_class='zoom', title='Zoom Meeting'),  # Zoom meetings
+    ]
+)
 auto_fullscreen = True
 
 focus_on_window_activation = "smart"

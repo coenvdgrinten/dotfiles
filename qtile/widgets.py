@@ -2,6 +2,7 @@ import os
 from libqtile import bar, widget
 from libqtile.lazy import lazy
 from libqtile.config import Screen
+import subprocess
 
 from functions import PWA
 # widget_defaults = dict(
@@ -17,24 +18,24 @@ from functions import PWA
 class MyWidgets:
     def __init__(self):
         """self.colors = [["#292d3e", "#292d3e"],  # panel background
-                       # background for current screen tab
-                       ["#434758", "#434758"],
-                       ["#ffffff", "#ffffff"],  # font color for group names
-                       # border line color for current tab
-                       ["#bc13fe", "#bc13fe"],  # Group down color
-                       # border line color for other tab and odd widgets
-                       ["#8d62a9", "#8d62a9"],
-                       ["#668bd7", "#668bd7"],  # color for the even widgets
-                       ["#e1acff", "#e1acff"],  # window name
+        # background for current screen tab
+        ["#434758", "#434758"],
+        ["#ffffff", "#ffffff"],  # font color for group names
+        # border line color for current tab
+        ["#bc13fe", "#bc13fe"],  # Group down color
+        # border line color for other tab and odd widgets
+        ["#8d62a9", "#8d62a9"],
+        ["#668bd7", "#668bd7"],  # color for the even widgets
+        ["#e1acff", "#e1acff"],  # window name
 
-                       ["#000000", "#000000"],
-                       ["#AD343E", "#AD343E"],
-                       ["#f76e5c", "#f76e5c"],
-                       ["#F39C12", "#F39C12"],
-                       ["#F7DC6F", "#F7DC6F"],
-                       ["#f1ffff", "#f1ffff"],
-                       ["#4c566a", "#4c566a"], ]"""
-                       
+        ["#000000", "#000000"],
+        ["#AD343E", "#AD343E"],
+        ["#f76e5c", "#f76e5c"],
+        ["#F39C12", "#F39C12"],
+        ["#F7DC6F", "#F7DC6F"],
+        ["#f1ffff", "#f1ffff"],
+        ["#4c566a", "#4c566a"], ]"""
+
         self.colors = {
             "bg": "#4e4c4a",
             "bg_highlight": "#4e4c4a",
@@ -52,9 +53,9 @@ class MyWidgets:
         self.termite = "termite"
 
     def init_widgets_list(self):
-        '''
+        """
         Function that returns the desired widgets in form of list
-        '''
+        """
         widgets_list = [
             widget.Sep(
                 linewidth=0,
@@ -75,8 +76,8 @@ class MyWidgets:
                 rounded=False,
                 # highlight_color=self.colors[9],
                 # highlight_method="line",
-                highlight_method='block',
-                urgent_alert_method='block',
+                highlight_method="block",
+                urgent_alert_method="block",
                 # urgent_border=self.colors[9],
                 this_current_screen_border=self.colors["red"],
                 this_screen_border=self.colors["red"],
@@ -100,16 +101,14 @@ class MyWidgets:
                 background=self.colors["bg"],
             ),
             widget.WindowName(
-                foreground=self.colors["fg"],
-                background=self.colors["bg"],
-                padding=0
+                foreground=self.colors["fg"], background=self.colors["bg"], padding=0
             ),
             widget.TextBox(
-                text='',
+                text="",
                 foreground=self.colors["blue"],
                 background=self.colors["bg"],
                 padding=-7,
-                fontsize=40
+                fontsize=40,
             ),
             widget.BatteryIcon(
                 foreground=self.colors["fg"],
@@ -125,32 +124,33 @@ class MyWidgets:
                 padding=5,
             ),
             widget.TextBox(
-                text='',
+                text="",
                 foreground=self.colors["red"],
                 background=self.colors["blue"],
                 padding=-7,
-                fontsize=40
+                fontsize=40,
             ),
             widget.TextBox(
                 text="",
                 foreground=self.colors["black"],
                 background=self.colors["red"],
                 padding=4,
-                fontsize=14
+                fontsize=14,
             ),
             widget.Memory(
                 foreground=self.colors["black"],
                 background=self.colors["red"],
-                mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn(
-                    self.termite + ' -e htop')},
-                padding=7
+                mouse_callbacks={
+                    "Button1": lambda qtile: qtile.cmd_spawn(self.termite + " -e htop")
+                },
+                padding=7,
             ),
             widget.TextBox(
-                text='',
+                text="",
                 foreground=self.colors["orange"],
                 background=self.colors["red"],
                 padding=-7,
-                fontsize=40
+                fontsize=40,
             ),
             widget.TextBox(
                 text="  ",
@@ -158,47 +158,49 @@ class MyWidgets:
                 background=self.colors["orange"],
                 padding=0,
                 mouse_callbacks={
-                    "Button1": lambda qtile: qtile.cmd_spawn("pavucontrol")}
+                    "Button1": lambda qtile: qtile.cmd_spawn("pavucontrol")
+                },
             ),
             widget.Volume(
                 foreground=self.colors["black"],
                 background=self.colors["orange"],
-                padding=5
+                padding=5,
             ),
             widget.TextBox(
-                text='',
+                text="",
                 foreground=self.colors["yellow"],
                 background=self.colors["orange"],
                 padding=-7,
-                fontsize=40
+                fontsize=40,
             ),
             widget.CurrentLayoutIcon(
-                custom_icon_paths=[os.path.expanduser(
-                    "~/.config/qtile/icons")],
+                custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
                 foreground=self.colors["black"],
                 background=self.colors["yellow"],
                 padding=0,
-                scale=0.7
+                scale=0.7,
             ),
             widget.CurrentLayout(
                 foreground=self.colors["black"],
                 background=self.colors["yellow"],
-                padding=5
+                padding=5,
             ),
             widget.TextBox(
-                text='',
+                text="",
                 foreground=self.colors["white"],
                 background=self.colors["yellow"],
                 padding=-7,
-                fontsize=40
+                fontsize=40,
             ),
             widget.Clock(
                 foreground=self.colors["black"],
                 background=self.colors["white"],
                 mouse_callbacks={
-                    "Button1": lambda qtile: qtile.cmd_spawn(PWA.calendar())},
-                format="%B %d  [ %H:%M ]"
+                    "Button1": lambda qtile: qtile.cmd_spawn(PWA.calendar())
+                },
+                format="%B %d  [ %H:%M ]",
             ),
+            widget.Systray(background=self.colors["bg"], padding=5),
             widget.Sep(
                 linewidth=0,
                 padding=10,
@@ -209,34 +211,40 @@ class MyWidgets:
         return widgets_list
 
     def init_widgets_screen(self):
-        '''
+        """
         Function that returns the widgets in a list.
         It can be modified so it is useful if you  have a multimonitor system
-        '''
+        """
         widgets_screen = self.init_widgets_list()
         return widgets_screen
 
-    def init_widgets_screen2(self):
-        '''
-        Function that returns the widgets in a list.
-        It can be modified so it is useful if you  have a multimonitor system
-        '''
-        widgets_screen2 = self.init_widgets_screen()
-        return widgets_screen2
-    
-    def init_widgets_screen3(self):
-        '''
-        Function that returns the widgets in a list.
-        It can be modified so it is useful if you  have a multimonitor system
-        '''
-        widgets_screen3 = self.init_widgets_screen()
-        return widgets_screen3
-
     def init_screen(self):
-        '''
-        Init the widgets in the screen
-        '''
-        return [Screen(top=bar.Bar(widgets=self.init_widgets_screen(), opacity=1.0, size=22)),
-                Screen(top=bar.Bar(widgets=self.init_widgets_screen(), opacity=1.0, size=22)),
-                Screen(top=bar.Bar(widgets=self.init_widgets_screen(), opacity=1.0, size=22)),
+        """
+        Init the widgets in the screen dynamically based on connected monitors
+        """
+        try:
+            # Get number of active monitors. The first line from the command is "Monitors: X", so we skip it.
+            num_monitors = len(
+                subprocess.check_output(["xrandr", "--listactivemonitors"])
+                .decode()
+                .strip()
+                .split("\n")[1:]
+            )
+        except Exception:
+            num_monitors = 1  # Fallback to 1 monitor on error
+
+        screens = [
+            Screen(
+                top=bar.Bar(widgets=self.init_widgets_screen(), opacity=1.0, size=22)
+            )
+            for _ in range(num_monitors)
+        ]
+
+        # Remove systray from all but the first screen to avoid issues
+        if num_monitors > 1:
+            for screen in screens[1:]:
+                screen.top.widgets = [
+                    w for w in screen.top.widgets if not isinstance(w, widget.Systray)
                 ]
+
+        return screens

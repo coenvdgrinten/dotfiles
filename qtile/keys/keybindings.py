@@ -28,12 +28,20 @@ class Keybindings:
         layout_up = Key(modifier, UP, lazy.layout.up())
 
         toogle_layout = Key(modifier, TOOGLE_LAYOUT, lazy.next_layout())
-        
+
         ############   BINDINGS FOR TREETAB   ##############
         layout_add_section = Key(modifier, GROW, lazy.layout.add_section())
-        layout_del_section = Key(modifier, SHRINK, lazy.layout.del_section())        
+        layout_del_section = Key(modifier, SHRINK, lazy.layout.del_section())
 
-        self.keys += [layout_left, layout_right, layout_down, layout_up, toogle_layout, layout_add_section, layout_del_section]
+        self.keys += [
+            layout_left,
+            layout_right,
+            layout_down,
+            layout_up,
+            toogle_layout,
+            layout_add_section,
+            layout_del_section,
+        ]
 
     def create_swap_keys(self):
         modifier = [MOVEMENT_KEY, SWAP_KEY]
@@ -58,7 +66,8 @@ class Keybindings:
         self.keys += [grow, shrink, normalize, maximize]
 
     def create_shutdown_keys(self):
-        shutdown = Key(SHUTDOWN_MODIFIER, SHUTDOWN, lazy.shutdown())
+        shutdown = Key(SHUTDOWN_MODIFIER, SHUTDOWN, lazy.spawn("sudo shutdown now"))
+        logout = Key(SHUTDOWN_MODIFIER, LOGOUT, lazy.logout())
         restart = Key(SHUTDOWN_MODIFIER, RESTART, lazy.restart())
         home = os.path.expanduser("~")
 
@@ -68,7 +77,12 @@ class Keybindings:
             lazy.spawn("bash " + home + "/.config/qtile/screen_setup.sh", shell=True),
         )
 
-        self.keys += [shutdown, restart, screen_setup]
+        self.keys += [shutdown, logout, restart, screen_setup]
+
+    def create_lock_keys(self):
+        lock = Key(SHUTDOWN_MODIFIER, LOCK, lazy.spawn("i3lock-fancy"))
+
+        self.keys += [lock]
 
     def create_kill_keys(self):
         modifier = [MOVEMENT_KEY, ALTGR]
@@ -114,6 +128,12 @@ class Keybindings:
             move_prev_screen,
         ]
 
+    def create_scratchpad_keys(self):
+        """Create scratchpad keybindings"""
+        scratchpad_toggle = Key([MOD], "grave", lazy.group['scratchpad'].dropdown_toggle('term'))
+        
+        self.keys += [scratchpad_toggle]
+
     def create_spawn_keys(self):
         for spawn_key in self.spawn_keys:
             modifier, key, command = spawn_key
@@ -154,9 +174,11 @@ class Keybindings:
         self.create_swap_keys()
         self.create_windows_keys()
         self.create_shutdown_keys()
+        self.create_lock_keys()
         self.create_kill_keys()
         self.create_floating_keys()
         self.create_groups_keys()
+        self.create_scratchpad_keys()
 
         self.create_cmd_keys()
         self.create_spawn_keys()

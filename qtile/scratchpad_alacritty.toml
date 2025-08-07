@@ -1,0 +1,48 @@
+# Scratchpad terminal configuration using Qtile theme colors
+
+[window]
+padding = { x = 10, y = 10 }
+decorations = "None"
+title = "Qtile Scratchpad"
+
+[window.class]
+instance = "qtile-scratchpad"
+general = "Alacritty"
+
+[font]
+size = 12
+
+[font.normal]
+family = "Ubuntu Mono"
+
+[colors.primary]
+background = "#4e4c4a"  # Your bg color
+foreground = "#e2d1cf"  # Your fg color
+
+[colors.normal]
+black   = "#4e4c4a"     # Your black
+red     = "#fd7b83"     # Your red
+green   = "#9b9691"     # Your grey (as green)
+yellow  = "#fdd48f"     # Your yellow
+blue    = "#667586"     # Your blue
+magenta = "#fda987"     # Your orange (as magenta)
+cyan    = "#e2d1cf"     # Your white (as cyan)
+white   = "#e2d1cf"     # Your white
+
+[colors.bright]
+black   = "#9b9691"     # Your grey
+red     = "#fd7b83"
+green   = "#9b9691"
+yellow  = "#fdd48f"
+blue    = "#667586"
+magenta = "#fda987"
+cyan    = "#e2d1cf"
+white   = "#e2d1cf"
+
+[colors.cursor]
+cursor = "#fd7b83"      # Your red for cursor
+text   = "#4e4c4a"      # Your bg for cursor text
+
+[colors.selection]
+text       = "#4e4c4a"  # Your bg
+background = "#fda987"  # Your orange for selection
