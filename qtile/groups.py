@@ -17,16 +17,49 @@ class CreateGroups:
         ],
         # Define which applications should go to which workspace
         "matches": [
-            [],  # Workspace 1 - General
-            [Match(wm_class=["firefox", "brave-browser", "chromium"])],  # Workspace 2 - Browsers
-            [Match(wm_class=["code", "code-oss", "VSCodium"])],  # Workspace 3 - Coding
-            [Match(wm_class=["thunar", "dolphin", "nautilus"])],  # Workspace 4 - Files
-            [Match(wm_class=["spotify", "vlc", "mpv"])],  # Workspace 5 - Media
-            [
-                Match(wm_class=["discord", "telegram-desktop", "whatsapp-for-linux"])
-            ],  # Workspace 6 - Communication
-            [Match(wm_class=["libreoffice", "gimp", "inkscape"])],  # Workspace 7 - Productivity
-            [Match(wm_class=["steam", "lutris", "minecraft"])],  # Workspace 8 - Games
+            [  # Workspace 1 - Work Browser (Brave)
+                Match(wm_class=["brave-browser", "brave", "Brave-browser"]),
+                Match(title=["Brave"]),
+            ],
+            [  # Workspace 2 - VSCode
+                Match(wm_class=["code", "code-oss", "VSCodium", "Code"]),
+                Match(title=["Visual Studio Code"]),
+            ],
+            [  # Workspace 3 - Terminal/Command Line
+                Match(wm_class=["alacritty", "Alacritty"]),
+                Match(wm_class=["terminator", "Terminator"]),
+                Match(wm_class=["gnome-terminal", "Gnome-terminal"]),
+                Match(wm_class=["xterm", "XTerm"]),
+                Match(wm_class=["kitty", "Kitty"]),
+                Match(title=["Terminal"]),
+            ],
+            [  # Workspace 4 - Videos
+                Match(wm_class=["vlc", "VLC"]),
+                Match(wm_class=["mpv", "MPV"]),
+                Match(wm_class=["totem", "Totem"]),
+                Match(wm_class=["mplayer", "MPlayer"]),
+                Match(wm_class=["smplayer", "SMPlayer"]),
+                Match(title=["VLC media player", "mpv"]),
+            ],
+            [  # Workspace 5 - Spotify
+                Match(wm_class=["spotify", "Spotify"]),
+                Match(title=["Spotify"]),
+            ],
+            [  # Workspace 6 - Personal Browser (Brave - different instance or windows)
+                # You might want to use a different browser for personal use
+                # or use Brave with different profiles/windows
+                Match(wm_class=["firefox", "Firefox"]),
+                Match(wm_class=["chromium", "Chromium"]),
+                Match(title=["Mozilla Firefox", "Chromium"]),
+            ],
+            [  # Workspace 7 - File Explorer
+                Match(wm_class=["thunar", "Thunar"]),
+                Match(wm_class=["dolphin", "Dolphin"]),
+                Match(wm_class=["nautilus", "Nautilus"]),
+                Match(wm_class=["pcmanfm", "PCManFM"]),
+                Match(title=["File Manager", "Files"]),
+            ],
+            [],  # Workspace 8 - No rules (catch-all for everything else)
         ],
     }
 
