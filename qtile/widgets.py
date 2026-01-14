@@ -157,9 +157,7 @@ class MyWidgets:
                 foreground=self.colors["black"],
                 background=self.colors["orange"],
                 padding=0,
-                mouse_callbacks={
-                    "Button1": lambda qtile: qtile.cmd_spawn("pavucontrol")
-                },
+                mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn("pavucontrol")},
             ),
             widget.Volume(
                 foreground=self.colors["black"],
@@ -195,9 +193,7 @@ class MyWidgets:
             widget.Clock(
                 foreground=self.colors["black"],
                 background=self.colors["white"],
-                mouse_callbacks={
-                    "Button1": lambda qtile: qtile.cmd_spawn(PWA.calendar())
-                },
+                mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(PWA.calendar())},
                 format="%B %d  [ %H:%M ]",
             ),
             widget.Systray(background=self.colors["bg"], padding=5),
@@ -234,9 +230,7 @@ class MyWidgets:
             num_monitors = 1  # Fallback to 1 monitor on error
 
         screens = [
-            Screen(
-                top=bar.Bar(widgets=self.init_widgets_screen(), opacity=1.0, size=22)
-            )
+            Screen(top=bar.Bar(widgets=self.init_widgets_screen(), opacity=1.0, size=22))
             for _ in range(num_monitors)
         ]
 

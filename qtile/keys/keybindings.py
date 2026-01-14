@@ -80,7 +80,7 @@ class Keybindings:
         self.keys += [shutdown, logout, restart, screen_setup]
 
     def create_lock_keys(self):
-        lock = Key(SHUTDOWN_MODIFIER, LOCK, lazy.spawn("i3lock-fancy"))
+        lock = Key(SHUTDOWN_MODIFIER, LOCK, lazy.spawn("/home/coen/.config/qtile/lock.sh"))
 
         self.keys += [lock]
 
@@ -130,8 +130,8 @@ class Keybindings:
 
     def create_scratchpad_keys(self):
         """Create scratchpad keybindings"""
-        scratchpad_toggle = Key([MOD], "grave", lazy.group['scratchpad'].dropdown_toggle('term'))
-        
+        scratchpad_toggle = Key([MOD], "grave", lazy.group["scratchpad"].dropdown_toggle("term"))
+
         self.keys += [scratchpad_toggle]
 
     def create_spawn_keys(self):
