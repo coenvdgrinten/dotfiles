@@ -64,7 +64,7 @@ class MyWidgets:
                 background="#a4a3a9",
             ),
             widget.GroupBox(
-                font="Ubuntu Bold",
+                font="Ubuntu Nerd Font Bold",
                 fontsize=12,
                 margin_y=2,
                 margin_x=0,
@@ -113,7 +113,7 @@ class MyWidgets:
             widget.BatteryIcon(
                 foreground=self.colors["fg"],
                 background=self.colors["blue"],
-                theme_path="/home/coen/.config/qtile/icons/battery_theme",
+                theme_path="/home/cvdgrinten/.config/qtile/icons/battery_theme",
                 update_interval=1,
                 padding=2,
             ),
@@ -171,13 +171,6 @@ class MyWidgets:
                 padding=-7,
                 fontsize=40,
             ),
-            widget.CurrentLayoutIcon(
-                custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-                foreground=self.colors["black"],
-                background=self.colors["yellow"],
-                padding=0,
-                scale=0.7,
-            ),
             widget.CurrentLayout(
                 foreground=self.colors["black"],
                 background=self.colors["yellow"],
@@ -196,7 +189,11 @@ class MyWidgets:
                 mouse_callbacks={"Button1": lambda qtile: qtile.cmd_spawn(PWA.calendar())},
                 format="%B %d  [ %H:%M ]",
             ),
-            widget.Systray(background=self.colors["bg"], padding=5),
+            widget.Systray(
+                background=self.colors["bg"],
+                padding=5,
+                icon_size=16,
+            ),
             widget.Sep(
                 linewidth=0,
                 padding=10,

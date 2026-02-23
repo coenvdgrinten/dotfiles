@@ -68,19 +68,20 @@ class Keybindings:
     def create_shutdown_keys(self):
         shutdown = Key(SHUTDOWN_MODIFIER, SHUTDOWN, lazy.spawn("sudo shutdown now"))
         logout = Key(SHUTDOWN_MODIFIER, LOGOUT, lazy.logout())
-        restart = Key(SHUTDOWN_MODIFIER, RESTART, lazy.restart())
+        restart = Key(SHUTDOWN_MODIFIER, RESTART, lazy.spawn("pkill qtile && sleep 0.5 && qtile start", shell=True))
         home = os.path.expanduser("~")
 
+        # Use autorandr for automatic display detection and configuration
         screen_setup = Key(
             SHUTDOWN_MODIFIER,
             SCREEN_SETUP,
-            lazy.spawn("bash " + home + "/.config/qtile/screen_setup.sh", shell=True),
+            lazy.spawn("autorandr --change --force && feh --bg-fill ~/.config/qtile/wallpaper.png", shell=True),
         )
 
         self.keys += [shutdown, logout, restart, screen_setup]
 
     def create_lock_keys(self):
-        lock = Key(SHUTDOWN_MODIFIER, LOCK, lazy.spawn("/home/coen/.config/qtile/lock.sh"))
+        lock = Key(SHUTDOWN_MODIFIER, LOCK, lazy.spawn("/home/cvdgrinten/.config/qtile/lock.sh"))
 
         self.keys += [lock]
 
@@ -156,14 +157,15 @@ class Keybindings:
         """
         group_keys = []
         for icon in group_names:
+            # Extract the first character as the key, and use lowercase version as group name
             index = (icon[0]).lower()
 
             group_keys += [
-                Key([MOVEMENT_KEY, GROUPS_KEY], index, lazy.group[icon].toscreen()),
+                Key([MOVEMENT_KEY, GROUPS_KEY], index, lazy.group[index].toscreen()),
                 Key(
                     [MOVEMENT_KEY, SWAP_GROUP_KEY],
                     index,
-                    lazy.window.togroup(icon, switch_group=True),
+                    lazy.window.togroup(index, switch_group=True),
                 ),
             ]
 

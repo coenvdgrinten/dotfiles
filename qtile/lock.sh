@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to your logo
-LOGO="/home/coen/Pictures/Logo/Logo_white_text_transparent.png"
+LOGO="/home/cvdgrinten/Pictures/Logo/Logo_white_text_transparent.png"
 TEMP_BG="/tmp/lock_screen.png"
 TEMP_LOGO="/tmp/lock_logo.png"
 
