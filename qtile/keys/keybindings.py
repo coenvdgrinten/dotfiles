@@ -81,7 +81,7 @@ class Keybindings:
         self.keys += [shutdown, logout, restart, screen_setup]
 
     def create_lock_keys(self):
-        lock = Key(SHUTDOWN_MODIFIER, LOCK, lazy.spawn("/home/cvdgrinten/.config/qtile/lock.sh"))
+        lock = Key(SHUTDOWN_MODIFIER, LOCK, lazy.spawn(os.path.expanduser("~/.config/qtile/lock.sh")))
 
         self.keys += [lock]
 

@@ -1,18 +1,28 @@
 #!/bin/bash
 
 # Path to your logo
-LOGO="/home/cvdgrinten/Pictures/Logo/Logo_white_text_transparent.png"
+LOGO="$HOME/Pictures/Logo/Logo_white_text_transparent.png"
 TEMP_BG="/tmp/lock_screen.png"
 TEMP_LOGO="/tmp/lock_logo.png"
+
+# Support both ImageMagick 7 (magick) and ImageMagick 6 (convert)
+if command -v magick &>/dev/null; then
+    IM="magick"
+elif command -v convert &>/dev/null; then
+    IM="convert"
+else
+    echo "Error: ImageMagick not found. Install it with: sudo apt install imagemagick"
+    exit 1
+fi
 
 # Get total screen resolution (all monitors combined)
 RESOLUTION=$(xdpyinfo | grep dimensions | awk '{print $2}')
 
 # Resize logo to reasonable size (800px width, maintaining aspect ratio)
-convert $LOGO -resize 800x $TEMP_LOGO
+$IM $LOGO -resize 800x $TEMP_LOGO
 
 # Create a black background with the full resolution
-convert -size $RESOLUTION xc:black $TEMP_BG
+$IM -size $RESOLUTION xc:black $TEMP_BG
 
 # Get individual monitor positions and sizes
 # This matches outputs like "DP-3-1 connected" or "eDP-1 connected"
@@ -34,13 +44,13 @@ xrandr --query | grep ' connected' | while read -r line; do
         CENTER_Y=$((Y_OFFSET + HEIGHT / 2 - 100))
         
         # Add logo centered on this monitor
-        convert $TEMP_BG $TEMP_LOGO \
+        $IM $TEMP_BG $TEMP_LOGO \
             -geometry +${CENTER_X}+${CENTER_Y} \
             -composite $TEMP_BG
         
         # Add "LOCKED" text below the logo on each monitor
         TEXT_Y=$((CENTER_Y + 250))
-        convert $TEMP_BG \
+        $IM $TEMP_BG \
             -fill white \
             -pointsize 36 \
             -font DejaVu-Sans-Bold \

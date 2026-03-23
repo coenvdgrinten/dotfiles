@@ -107,10 +107,22 @@ respect_minimize_requests = True
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 wmname = "LG3D"
 
+widget_defaults = dict(
+    font="Ubuntu Mono",
+    fontsize=12,
+    padding=4,
+)
+extension_defaults = widget_defaults.copy()
+
 @hook.subscribe.startup_once
-def start_once():    
+def start_once():
     script = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.call([script])
+
+@hook.subscribe.startup
+def start_always():
+    # Re-run compositor on every qtile restart so it doesn't disappear
+    subprocess.Popen(["picom", "-b"])
 
 @hook.subscribe.client_new
 def dialogs(window):

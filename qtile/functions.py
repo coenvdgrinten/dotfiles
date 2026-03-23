@@ -54,6 +54,10 @@ class PWA:
     def stmcubeide():
         return "~/st/stm32cubeide_1.16.0/stm32cubeide"
 
+    @staticmethod
+    def calendar():
+        return "xdg-open 'https://calendar.google.com/'"
+
 
 if __name__ == "__main__":
     print("This is an utilities module")

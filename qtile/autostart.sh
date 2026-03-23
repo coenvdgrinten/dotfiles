@@ -6,7 +6,7 @@ set -x
 ./screen_setup.sh
 
 # Setup picom
-picom --experimental-backend --config ~/.config/picom.conf &
+picom --config ~/.config/picom.conf &
 
 # Set wallpaper with feh (more reliable than nitrogen)
 sleep 1
@@ -30,3 +30,5 @@ code &
 
 # 6. Antigravity
 antigravity &
+
+nitrogen --restore &

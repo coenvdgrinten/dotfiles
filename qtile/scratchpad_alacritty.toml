@@ -1,36 +1,63 @@
-# Scratchpad terminal configuration using Qtile theme colors
+# Scratchpad terminal configuration
+# Matches the qtile config color theme
 
 [window]
-padding = { x = 10, y = 10 }
+padding = { x = 12, y = 10 }
 decorations = "None"
 title = "Qtile Scratchpad"
+opacity = 0.92
+dynamic_padding = false
 
 [window.class]
 instance = "qtile-scratchpad"
 general = "Alacritty"
 
+[scrolling]
+history = 10000
+multiplier = 5
+
 [font]
 size = 12
+builtin_box_drawing = true
 
 [font.normal]
+# If you installed UbuntuMono Nerd Font, use the line below instead:
+# family = "UbuntuMono Nerd Font Mono"
 family = "Ubuntu Mono"
+style  = "Regular"
+
+[font.bold]
+family = "Ubuntu Mono"
+style  = "Bold"
+
+[font.italic]
+family = "Ubuntu Mono"
+style  = "Italic"
+
+# ── Colors (matching widgets.py theme) ────────────────────────────────────────
 
 [colors.primary]
-background = "#4e4c4a"  # Your bg color
-foreground = "#e2d1cf"  # Your fg color
+background = "#4e4c4a"
+foreground = "#e2d1cf"
+
+[colors.cursor]
+cursor = "#fd7b83"   # red
+text   = "#4e4c4a"   # bg
+
+[colors.selection]
+text       = "#4e4c4a"
+background = "#fda987"   # orange
+
+[colors.search.matches]
+foreground = "#4e4c4a"
+background = "#fdd48f"   # yellow
+
+[colors.search.focused_match]
+foreground = "#4e4c4a"
+background = "#fd7b83"   # red
 
 [colors.normal]
-black   = "#4e4c4a"     # Your black
-red     = "#fd7b83"     # Your red
-green   = "#9b9691"     # Your grey (as green)
-yellow  = "#fdd48f"     # Your yellow
-blue    = "#667586"     # Your blue
-magenta = "#fda987"     # Your orange (as magenta)
-cyan    = "#e2d1cf"     # Your white (as cyan)
-white   = "#e2d1cf"     # Your white
-
-[colors.bright]
-black   = "#9b9691"     # Your grey
+black   = "#4e4c4a"
 red     = "#fd7b83"
 green   = "#9b9691"
 yellow  = "#fdd48f"
@@ -39,10 +66,26 @@ magenta = "#fda987"
 cyan    = "#e2d1cf"
 white   = "#e2d1cf"
 
-[colors.cursor]
-cursor = "#fd7b83"      # Your red for cursor
-text   = "#4e4c4a"      # Your bg for cursor text
+[colors.bright]
+black   = "#9b9691"
+red     = "#fd7b83"
+green   = "#9b9691"
+yellow  = "#fdd48f"
+blue    = "#667586"
+magenta = "#fda987"
+cyan    = "#e2d1cf"
+white   = "#e2d1cf"
 
-[colors.selection]
-text       = "#4e4c4a"  # Your bg
-background = "#fda987"  # Your orange for selection
+# ── Bell ───────────────────────────────────────────────────────────────────────
+
+[bell]
+animation = "EaseOutExpo"
+duration  = 0
+color     = "#fd7b83"
+
+# ── Cursor ─────────────────────────────────────────────────────────────────────
+
+[cursor]
+style     = { shape = "Block", blinking = "On" }
+blink_interval = 750
+unfocused_hollow = true
