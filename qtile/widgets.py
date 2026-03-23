@@ -138,7 +138,7 @@ def get_brightness():
 def get_power_profile():
     """Return a nerd-font icon + short label for the current power profile."""
     labels = {
-        "performance": "\U000f1c0b Perf",
+        "performance": "\uf0e7 Perf",
         "balance_performance": "\U000f05d1 Bal",
         "balance_power": "\U000f0079 Saver",
         "power": "\U000f0079 Saver",

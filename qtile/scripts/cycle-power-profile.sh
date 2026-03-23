@@ -27,7 +27,8 @@ apply_profile() {
     if command -v powerprofilesctl &>/dev/null; then
         powerprofilesctl set "$new" && ok=1
     elif [[ -f "$EPP_PATH" ]]; then
-        # intel_pstate / amd-pstate: single pkexec call for all CPUs
+        # intel_pstate / amd-pstate: single sudo call for all CPUs
+        # Requires: echo "$USER ALL=(root) NOPASSWD: $SET_EPP_SCRIPT" | sudo tee /etc/sudoers.d/qtile-set-epp && sudo chmod 440 /etc/sudoers.d/qtile-set-epp
         local epp
         case "$new" in
             performance)  epp="performance" ;;
@@ -35,7 +36,7 @@ apply_profile() {
             power-saver)  epp="balance_power" ;;
             *)            epp="balance_performance" ;;
         esac
-        pkexec "$SET_EPP_SCRIPT" "$epp" && ok=1
+        sudo "$SET_EPP_SCRIPT" "$epp" && ok=1
     else
         # Legacy: cpupower governor
         local gov
@@ -43,7 +44,7 @@ apply_profile() {
             power-saver) gov="powersave" ;;
             *)           gov="$new" ;;
         esac
-        pkexec cpupower frequency-set -g "$gov" &>/dev/null && ok=1
+        sudo cpupower frequency-set -g "$gov" &>/dev/null && ok=1
     fi
     if [[ "$ok" -eq 1 ]]; then
         notify-send -i "$NOTIFY_ICON" "Power Profile" "$icon  $label"
@@ -79,16 +80,16 @@ if [[ "$1" == "menu" ]]; then
     mark() { [[ "$CURRENT" == "$1" ]] && echo "● " || echo "  "; }
 
     if command -v powerprofilesctl &>/dev/null; then
-        OPTIONS="$(mark performance)󱐋  Performance\n$(mark balanced)󰗑  Balanced\n$(mark power-saver)  Power Saver"
+        OPTIONS="$(mark performance)  Performance\n$(mark balanced)󰗑  Balanced\n$(mark power-saver)  Power Saver"
     else
-        OPTIONS="$(mark performance)󱐋  Performance\n$(mark power-saver)  Power Saver"
+        OPTIONS="$(mark performance)  Performance\n$(mark power-saver)  Power Saver"
     fi
 
     CHOICE=$(echo -e "$OPTIONS" | rofi -dmenu -i -p "Power Profile" \
         -no-custom -theme-str 'window {width: 280px;}')
 
     case "$CHOICE" in
-        *Performance*)   apply_profile "performance" "Performance" "󱐋" ;;
+        *Performance*)   apply_profile "performance" "Performance" "" ;;
         *Balanced*)      apply_profile "balanced"    "Balanced"    "󰗑" ;;
         *"Power Saver"*) apply_profile "power-saver" "Power Saver" ""  ;;
     esac
@@ -102,12 +103,12 @@ if command -v powerprofilesctl &>/dev/null; then
     case "$CURRENT" in
         performance)  apply_profile "balanced"    "Balanced"    "󰗑" ;;
         balanced)     apply_profile "power-saver" "Power Saver" "" ;;
-        power-saver)  apply_profile "performance" "Performance" "󱐋" ;;
+        power-saver)  apply_profile "performance" "Performance" "" ;;
         *)            apply_profile "balanced"    "Balanced"    "󰗑" ;;
     esac
 else
     case "$CURRENT" in
         performance)  apply_profile "power-saver" "Power Saver" "" ;;
-        *)            apply_profile "performance" "Performance" "󱐋" ;;
+        *)            apply_profile "performance" "Performance" "" ;;
     esac
 fi
