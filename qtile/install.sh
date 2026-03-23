@@ -70,6 +70,12 @@ APT_PACKAGES=(
     # Media
     playerctl
 
+    # Power management (enables powerprofilesctl — no root needed for profile switching)
+    power-profiles-daemon
+
+    # Network management GUI
+    network-manager-gnome    # provides nm-connection-editor
+
     # GTK theme switcher
     lxappearance
 

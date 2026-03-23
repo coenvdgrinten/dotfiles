@@ -86,7 +86,7 @@ APPS = [
     (
         [MOD],
         "space",
-        'rofi -show drun -show-icons',
+        'rofi -modi "drun,power-menu:rofi-power-menu,run,window,ssh" -show drun -show-icons',
     ),
     # Screenshots
     ([], "Print", "xfce4-screenshooter"),
@@ -106,7 +106,6 @@ CUSTOM_SPAWN_KEYS = [
     ([MOD, ALT], "s", PWA.spotify()),
     ([MOD, ALT], "e", PWA.stmcubeide()),
     ([MOD, ALT], "w", PWA.whatsapp()),
-    ([MOD, ALT], "m", PWA.gemini()),
 ]
 
 SPAWN_KEYS = (

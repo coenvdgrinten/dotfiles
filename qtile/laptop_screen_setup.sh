@@ -17,4 +17,4 @@ xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
 
 # Set wallpaper
 qtile_dir="$HOME/.config/qtile"
-feh --bg-fill "/home/cvdgrinten/.config/qtile/wallpaper.png"
+feh --bg-fill "$qtile_dir/wallpaper.png"

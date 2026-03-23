@@ -225,7 +225,7 @@ class MyWidgets:
                 background="#a4a3a9",
             ),
             widget.GroupBox(
-                font="Ubuntu Nerd Font Bold",
+                font="Ubuntu Bold",
                 fontsize=12,
                 margin_y=2,
                 margin_x=0,
@@ -425,11 +425,7 @@ class MyWidgets:
                 mouse_callbacks={"Button1": lazy.spawn(PWA.calendar())},
                 format="%B %d  [ %H:%M ]",
             ),
-            widget.Systray(
-                background=self.colors["bg"],
-                padding=5,
-                icon_size=16,
-            ),
+            widget.Systray(background=self.colors["bg"], padding=5),
             widget.Sep(
                 linewidth=0,
                 padding=10,
