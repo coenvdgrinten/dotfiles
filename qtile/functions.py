@@ -48,7 +48,15 @@ class PWA:
 
     @staticmethod
     def gemini():
-        return "brave-browser --profile-directory=Default --app-id=gdfaincndogidkdcdkhapmbffkckdkhn"
+        return (
+            "brave-browser --profile-directory=Default --app-id=gdfaincndogidkdcdkhapmbffkckdkhn"
+        )
+
+    @staticmethod
+    def gmail():
+        return (
+            "brave-browser --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm"
+        )
 
     @staticmethod
     def stmcubeide():

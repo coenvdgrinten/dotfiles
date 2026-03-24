@@ -4,33 +4,60 @@
 padding = { x = 10, y = 10 }
 decorations = "None"
 title = "Qtile Scratchpad"
+opacity = 0.95
+dynamic_padding = false
 
 [window.class]
 instance = "qtile-scratchpad"
 general = "Alacritty"
+
+[scrolling]
+history = 10000
+multiplier = 3
 
 [font]
 size = 12
 
 [font.normal]
 family = "Ubuntu Mono"
+style = "Regular"
+
+[font.bold]
+family = "Ubuntu Mono"
+style = "Bold"
+
+[font.italic]
+family = "Ubuntu Mono"
+style = "Italic"
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 500
+unfocused_hollow = true
+
+[mouse]
+hide_when_typing = true
+
+[bell]
+# Disable the terminal bell
+duration = 0
 
 [colors.primary]
-background = "#4e4c4a"  # Your bg color
-foreground = "#e2d1cf"  # Your fg color
+background = "#4e4c4a"
+foreground = "#e2d1cf"
 
 [colors.normal]
-black   = "#4e4c4a"     # Your black
-red     = "#fd7b83"     # Your red
-green   = "#9b9691"     # Your grey (as green)
-yellow  = "#fdd48f"     # Your yellow
-blue    = "#667586"     # Your blue
-magenta = "#fda987"     # Your orange (as magenta)
-cyan    = "#e2d1cf"     # Your white (as cyan)
-white   = "#e2d1cf"     # Your white
+black   = "#4e4c4a"
+red     = "#fd7b83"
+green   = "#9b9691"
+yellow  = "#fdd48f"
+blue    = "#667586"
+magenta = "#fda987"
+cyan    = "#e2d1cf"
+white   = "#e2d1cf"
 
 [colors.bright]
-black   = "#9b9691"     # Your grey
+black   = "#9b9691"
 red     = "#fd7b83"
 green   = "#9b9691"
 yellow  = "#fdd48f"
@@ -40,9 +67,9 @@ cyan    = "#e2d1cf"
 white   = "#e2d1cf"
 
 [colors.cursor]
-cursor = "#fd7b83"      # Your red for cursor
-text   = "#4e4c4a"      # Your bg for cursor text
+cursor = "#fd7b83"
+text   = "#4e4c4a"
 
 [colors.selection]
-text       = "#4e4c4a"  # Your bg
-background = "#fda987"  # Your orange for selection
+text       = "#4e4c4a"
+background = "#fda987"
