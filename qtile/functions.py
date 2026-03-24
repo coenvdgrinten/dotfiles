@@ -36,7 +36,7 @@ class PWA:
 
     @staticmethod
     def rofi():
-        return "rofi -show run"
+        return "rofi -show drun -show-icons"
 
     @staticmethod
     def spotify():
@@ -47,12 +47,20 @@ class PWA:
         return "xdg-open 'https://web.whatsapp.com/'"
 
     @staticmethod
-    def stmcubeide():
-        return "~/st/stm32cubeide_1.16.0/stm32cubeide"
+    def gemini():
+        return (
+            "brave-browser --profile-directory=Default --app-id=gdfaincndogidkdcdkhapmbffkckdkhn"
+        )
 
     @staticmethod
-    def calendar():
-        return "xdg-open 'https://calendar.google.com/'"
+    def gmail():
+        return (
+            "brave-browser --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm"
+        )
+
+    @staticmethod
+    def stmcubeide():
+        return "~/st/stm32cubeide_1.16.0/stm32cubeide"
 
 
 if __name__ == "__main__":

@@ -1,11 +1,10 @@
-# Scratchpad terminal configuration
-# Matches the qtile config color theme
+# Scratchpad terminal configuration using Qtile theme colors
 
 [window]
-padding = { x = 12, y = 10 }
+padding = { x = 10, y = 10 }
 decorations = "None"
 title = "Qtile Scratchpad"
-opacity = 0.92
+opacity = 0.95
 dynamic_padding = false
 
 [window.class]
@@ -14,47 +13,38 @@ general = "Alacritty"
 
 [scrolling]
 history = 10000
-multiplier = 5
+multiplier = 3
 
 [font]
 size = 12
-builtin_box_drawing = true
 
 [font.normal]
-# If you installed UbuntuMono Nerd Font, use the line below instead:
-# family = "UbuntuMono Nerd Font Mono"
 family = "Ubuntu Mono"
-style  = "Regular"
+style = "Regular"
 
 [font.bold]
 family = "Ubuntu Mono"
-style  = "Bold"
+style = "Bold"
 
 [font.italic]
 family = "Ubuntu Mono"
-style  = "Italic"
+style = "Italic"
 
-# ── Colors (matching widgets.py theme) ────────────────────────────────────────
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 500
+unfocused_hollow = true
+
+[mouse]
+hide_when_typing = true
+
+[bell]
+# Disable the terminal bell
+duration = 0
 
 [colors.primary]
 background = "#4e4c4a"
 foreground = "#e2d1cf"
-
-[colors.cursor]
-cursor = "#fd7b83"   # red
-text   = "#4e4c4a"   # bg
-
-[colors.selection]
-text       = "#4e4c4a"
-background = "#fda987"   # orange
-
-[colors.search.matches]
-foreground = "#4e4c4a"
-background = "#fdd48f"   # yellow
-
-[colors.search.focused_match]
-foreground = "#4e4c4a"
-background = "#fd7b83"   # red
 
 [colors.normal]
 black   = "#4e4c4a"
@@ -76,16 +66,10 @@ magenta = "#fda987"
 cyan    = "#e2d1cf"
 white   = "#e2d1cf"
 
-# ── Bell ───────────────────────────────────────────────────────────────────────
+[colors.cursor]
+cursor = "#fd7b83"
+text   = "#4e4c4a"
 
-[bell]
-animation = "EaseOutExpo"
-duration  = 0
-color     = "#fd7b83"
-
-# ── Cursor ─────────────────────────────────────────────────────────────────────
-
-[cursor]
-style     = { shape = "Block", blinking = "On" }
-blink_interval = 750
-unfocused_hollow = true
+[colors.selection]
+text       = "#4e4c4a"
+background = "#fda987"
