@@ -121,5 +121,4 @@ def dialogs(window):
 
 @hook.subscribe.screen_change
 def set_screens(event):
-    # Tell autorandr to apply the correct profile based on connected monitors
-    subprocess.run(["autorandr", "--change"])
+    qtile.reconfigure_screens()

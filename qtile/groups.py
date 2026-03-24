@@ -1,3 +1,4 @@
+import os
 import re
 from libqtile.config import Group, ScratchPad, DropDown, Match
 
@@ -121,7 +122,7 @@ class CreateGroups:
                 [
                     DropDown(
                         "term",
-                        "alacritty --config-file ~/.config/qtile/scratchpad_alacritty.toml",
+                        f"alacritty --config-file {os.path.expanduser('~/.config/qtile/scratchpad_alacritty.toml')}",
                         width=0.6,
                         height=0.7,
                         x=0.2,

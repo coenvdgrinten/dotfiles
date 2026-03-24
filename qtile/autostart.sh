@@ -2,7 +2,7 @@
 
 # Use autorandr for automatic display configuration
 # It will detect connected monitors and apply the appropriate profile
-./screen_setup.sh
+"$HOME/.config/qtile/screen_setup.sh"
 
 # Compositor
 picom --experimental-backend --config ~/.config/picom.conf &

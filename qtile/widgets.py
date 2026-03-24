@@ -4,8 +4,6 @@ from libqtile.lazy import lazy
 from libqtile.config import Screen
 import subprocess
 
-from functions import PWA
-
 _POWER_PROFILE_SCRIPT = os.path.expanduser("~/.config/qtile/scripts/cycle-power-profile.sh")
 _POWER_WIDGET_NAME = "power_mode_indicator"
 _NOW_PLAYING_MAX_LEN = 40
@@ -40,13 +38,14 @@ def get_now_playing():
     try:
         meta = subprocess.check_output(
             ["playerctl", "metadata", "--format", "{{artist}} - {{title}}"],
-            text=True, stderr=subprocess.DEVNULL,
+            text=True,
+            stderr=subprocess.DEVNULL,
         ).strip()
     except (FileNotFoundError, subprocess.CalledProcessError):
         return ""
     icon = "\U000f040a" if status == "Playing" else "\U000f03e4"  # 󰐊 / 󰏤
     if len(meta) > _NOW_PLAYING_MAX_LEN:
-        meta = meta[:_NOW_PLAYING_MAX_LEN - 1] + "\u2026"
+        meta = meta[: _NOW_PLAYING_MAX_LEN - 1] + "\u2026"
     return f"{icon} {meta}"
 
 
@@ -56,7 +55,8 @@ def get_network():
         # Check for active wifi
         out = subprocess.check_output(
             ["nmcli", "-t", "-f", "ACTIVE,SSID,SIGNAL", "dev", "wifi"],
-            text=True, stderr=subprocess.DEVNULL,
+            text=True,
+            stderr=subprocess.DEVNULL,
         ).strip()
         for line in out.splitlines():
             parts = line.split(":")
@@ -67,16 +67,22 @@ def get_network():
                 except ValueError:
                     sig = 0
                 # Signal strength icon: 󰤯 󰤟 󰤢 󰤥 󰤨
-                if sig >= 80:   icon = "\U000f0928"  # 󰤨
-                elif sig >= 60: icon = "\U000f0925"  # 󰤥
-                elif sig >= 40: icon = "\U000f0922"  # 󰤢
-                elif sig >= 20: icon = "\U000f091f"  # 󰤟
-                else:           icon = "\U000f092f"  # 󰤯
+                if sig >= 80:
+                    icon = "\U000f0928"  # 󰤨
+                elif sig >= 60:
+                    icon = "\U000f0925"  # 󰤥
+                elif sig >= 40:
+                    icon = "\U000f0922"  # 󰤢
+                elif sig >= 20:
+                    icon = "\U000f091f"  # 󰤟
+                else:
+                    icon = "\U000f092f"  # 󰤯
                 return f"{icon} {ssid}"
         # Check for active wired connection
         out2 = subprocess.check_output(
             ["nmcli", "-t", "-f", "DEVICE,TYPE,STATE", "dev"],
-            text=True, stderr=subprocess.DEVNULL,
+            text=True,
+            stderr=subprocess.DEVNULL,
         ).strip()
         for line in out2.splitlines():
             parts = line.split(":")
@@ -93,7 +99,8 @@ def get_network():
         # Check for active wifi
         out = subprocess.check_output(
             ["nmcli", "-t", "-f", "ACTIVE,SSID,SIGNAL", "dev", "wifi"],
-            text=True, stderr=subprocess.DEVNULL,
+            text=True,
+            stderr=subprocess.DEVNULL,
         ).strip()
         for line in out.splitlines():
             parts = line.split(":")
@@ -103,16 +110,22 @@ def get_network():
                     sig = int(parts[2])
                 except ValueError:
                     sig = 0
-                if sig >= 80:   icon = "\U000f0928"
-                elif sig >= 60: icon = "\U000f0925"
-                elif sig >= 40: icon = "\U000f0922"
-                elif sig >= 20: icon = "\U000f091f"
-                else:           icon = "\U000f092f"
+                if sig >= 80:
+                    icon = "\U000f0928"
+                elif sig >= 60:
+                    icon = "\U000f0925"
+                elif sig >= 40:
+                    icon = "\U000f0922"
+                elif sig >= 20:
+                    icon = "\U000f091f"
+                else:
+                    icon = "\U000f092f"
                 return f"{icon} {ssid}"
         # Check for active wired connection
         out2 = subprocess.check_output(
             ["nmcli", "-t", "-f", "DEVICE,TYPE,STATE", "dev"],
-            text=True, stderr=subprocess.DEVNULL,
+            text=True,
+            stderr=subprocess.DEVNULL,
         ).strip()
         for line in out2.splitlines():
             parts = line.split(":")
@@ -156,7 +169,11 @@ def get_power_profile():
         pass
     # Fallback: read energy_performance_preference (works with intel_pstate / amd-pstate)
     try:
-        epp = open("/sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference").read().strip()
+        epp = (
+            open("/sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference")
+            .read()
+            .strip()
+        )
         return labels.get(epp, labels.get("performance") if epp == "default" else "?")
     except OSError:
         pass
@@ -264,6 +281,16 @@ class MyWidgets:
             widget.WindowName(
                 foreground=self.colors["fg"], background=self.colors["bg"], padding=0
             ),
+            widget.TextBox(
+                text="󰒮",
+                foreground=self.colors["fg"],
+                background=self.colors["bg"],
+                padding=4,
+                fontsize=14,
+                mouse_callbacks={
+                    "Button1": lazy.spawn("playerctl previous"),
+                },
+            ),
             widget.GenPollText(
                 func=get_now_playing,
                 update_interval=0.5,
@@ -277,13 +304,24 @@ class MyWidgets:
                 },
             ),
             widget.TextBox(
+                text="󰒭",
+                foreground=self.colors["fg"],
+                background=self.colors["bg"],
+                padding=4,
+                fontsize=14,
+                mouse_callbacks={
+                    "Button1": lazy.spawn("playerctl next"),
+                },
+            ),
+            widget.TextBox(
                 text="",
                 foreground=self.colors["blue"],
                 background=self.colors["bg"],
                 padding=-7,
                 fontsize=40,
             ),
-            widget.GenPollText(                func=get_network,
+            widget.GenPollText(
+                func=get_network,
                 update_interval=5,
                 foreground=self.colors["fg"],
                 background=self.colors["blue"],
@@ -292,13 +330,14 @@ class MyWidgets:
                     "Button1": lazy.spawn("nm-connection-editor"),
                     "Button3": lazy.spawn(
                         "bash -c 'nmcli -t -f SSID dev wifi list | "
-                        "sed \"s/^://\" | sort -u | "
-                        "rofi -dmenu -i -p \"WiFi\" -theme-str \"window {width: 300px;}\" | "
-                        "xargs -I{} nmcli dev wifi connect \"{}\"'"
+                        'sed "s/^://" | sort -u | '
+                        'rofi -dmenu -i -p "WiFi" -theme-str "window {width: 300px;}" | '
+                        'xargs -I{} nmcli dev wifi connect "{}"\''
                     ),
                 },
             ),
-            widget.GenPollText(                name=_POWER_WIDGET_NAME,
+            widget.GenPollText(
+                name=_POWER_WIDGET_NAME,
                 func=get_power_profile,
                 update_interval=1,
                 foreground=self.colors["fg"],
@@ -348,9 +387,7 @@ class MyWidgets:
             widget.Memory(
                 foreground=self.colors["black"],
                 background=self.colors["red"],
-                mouse_callbacks={
-                    "Button1": lazy.spawn("alacritty -e htop")
-                },
+                mouse_callbacks={"Button1": lazy.spawn("alacritty -e htop")},
                 padding=7,
             ),
             widget.TextBox(
@@ -407,7 +444,8 @@ class MyWidgets:
                 padding=-7,
                 fontsize=40,
             ),
-            widget.CurrentLayoutIcon(
+            widget.CurrentLayout(
+                mode="icon",
                 custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
                 foreground=self.colors["black"],
                 background=self.colors["white"],
@@ -422,7 +460,6 @@ class MyWidgets:
             widget.Clock(
                 foreground=self.colors["black"],
                 background=self.colors["white"],
-                mouse_callbacks={"Button1": lazy.spawn(PWA.calendar())},
                 format="%B %d  [ %H:%M ]",
             ),
             widget.Systray(background=self.colors["bg"], padding=5),
