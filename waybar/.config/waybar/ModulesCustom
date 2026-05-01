@@ -142,15 +142,36 @@
 "custom/playerctl": {
 	"format": "<span>{}</span>",
 	"return-type": "json",
-	"max-length": 25,
-	"exec": "playerctl -a metadata --format '{\"text\": \"{{artist}}  {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-	"on-click-middle": "playerctl play-pause",
-	"on-click": "playerctl previous",
-	"on-click-right": "playerctl next",
+	"max-length": 30,
+	"exec": "~/.local/bin/myplayerctl.sh metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+	"on-click-right": "~/.local/bin/select-player.sh",
 	"scroll-step": 5.0,
 	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
 	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
 	"smooth-scrolling-threshold": 1,
+},
+
+"custom/playerctl-prev": {
+	"format": "⏮",
+	"on-click": "~/.local/bin/myplayerctl.sh previous",
+	"tooltip": true,
+	"tooltip-format": "Previous track",
+},
+
+"custom/playerctl-play": {
+	"format": "<span>{}</span>",
+	"return-type": "json",
+	"exec": "~/.local/bin/myplayerctl.sh status -F 2>/dev/null | while read s; do [ \"$s\" = \"Playing\" ] && echo '{\"text\": \"⏸\"}' || echo '{\"text\": \"▶\"}'; done",
+	"on-click": "~/.local/bin/myplayerctl.sh play-pause",
+	"tooltip": true,
+	"tooltip-format": "Play / Pause",
+},
+
+"custom/playerctl-next": {
+	"format": "⏭",
+	"on-click": "~/.local/bin/myplayerctl.sh next",
+	"tooltip": true,
+	"tooltip-format": "Next track",
 },
     
 "custom/power": {

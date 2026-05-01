@@ -152,6 +152,9 @@ tooltip {
 #custom-hypridle,
 #custom-menu,
 #custom-playerctl,
+#custom-playerctl-prev,
+#custom-playerctl-play,
+#custom-playerctl-next,
 #custom-power_vertical,
 #custom-power,
 #custom-quit,
@@ -180,6 +183,34 @@ tooltip {
 
 #temperature.critical {
     background-color: #ff0000;
+}
+
+/* Media player control buttons */
+#custom-playerctl-prev,
+#custom-playerctl-play,
+#custom-playerctl-next {
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 14px;
+    transition: all 0.15s ease;
+}
+
+#custom-playerctl-prev:hover,
+#custom-playerctl-play:hover,
+#custom-playerctl-next:hover {
+    color: #7ab8d8;
+    text-shadow: 0 0 8px rgba(122, 184, 216, 0.4);
+}
+
+#custom-playerctl-play {
+    font-size: 16px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#custom-playerctl {
+    padding-left: 8px;
+    padding-right: 6px;
 }
 
 @keyframes blink {
