@@ -14,8 +14,8 @@
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
-    "persistent-workspaces": {
-      "*": 5
+	"persistent-workspaces": {
+		"*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
 	},
 	"format-icons": {
 		"active": "",
@@ -31,8 +31,8 @@
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
-    "persistent-workspaces": {
-      "*": 5
+	"persistent-workspaces": {
+		"*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
 	},
 	"format-icons": {
 		"1": "I",
@@ -56,8 +56,8 @@
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
 	"show-special": false,
-    "persistent-workspaces": {
-      "*": 5
+	"persistent-workspaces": {
+		"*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
 	},
 	"format": "{icon}",
 	"format-icons": {
@@ -72,8 +72,8 @@
 	"show-special": false,
 	"all-outputs": true,
 	"format": "{icon}",
-    "persistent-workspaces": {
-      "*": 5
+	"persistent-workspaces": {
+		"*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
 	},
 	"format-icons": {
 		"1": "一",
@@ -97,8 +97,8 @@
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
-    "persistent-workspaces": {
-      "*": 5
+	"persistent-workspaces": {
+		"*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
 	},
 		"format-icons": {
 		"1": "Uno",
@@ -149,8 +149,8 @@
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
-    "persistent-workspaces": {
-      "*": 5
+	"persistent-workspaces": {
+		"*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
 	},
 	"format-icons": {
 		"1": "1",
@@ -176,8 +176,8 @@
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
 	"persistent-workspaces": {
-		"*": 5
-	  },
+		"*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+	},
 	"format": "{icon} {windows}",
 	"format-window-separator": " ",
 	"window-rewrite-default": " ",
