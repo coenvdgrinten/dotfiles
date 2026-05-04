@@ -234,13 +234,13 @@ main() {
                 notify-send -i "$iDIR/error.png" "E-R-R-O-R" "Install nwg-displays first"
                 exit 1
             fi
-            nwg-displays ;;
+            $scriptsDir/nwg-displays-wrapper.sh ;;
         "Configure Workspace Rules (nwg-displays)") 
             if ! command -v nwg-displays &>/dev/null; then
                 notify-send -i "$iDIR/error.png" "E-R-R-O-R" "Install nwg-displays first"
                 exit 1
             fi
-            nwg-displays ;;
+            $scriptsDir/nwg-displays-wrapper.sh ;;
 		"GTK Settings (nwg-look)") 
             if ! command -v nwg-look &>/dev/null; then
                 notify-send -i "$iDIR/error.png" "E-R-R-O-R" "Install nwg-look first"
