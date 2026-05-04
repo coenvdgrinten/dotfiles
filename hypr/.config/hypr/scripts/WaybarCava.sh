@@ -42,7 +42,7 @@ bars = 10
 
 [input]
 method = pulse
-source = auto
+source = cava_sink.monitor
 
 [output]
 method = raw
