@@ -10,10 +10,18 @@
 	"format": "{}",
 	"return-type": "json",
 	"interval": 120,
-	"exec": "python3 $HOME/.config/waybar/scripts/gmail_unread.py",
+	"exec": "python3 $HOME/.config/waybar/scripts/unread_count.py",
 	"escape": true,
 	"tooltip": true,
-	"on-click": "brave --new-window https://mail.google.com",
-	"on-click-right": "brave --new-window https://mail.google.com"
+	"on-click": "brave --new-window https://mail.google.com"
+},
+"custom/zulip": {
+	"format": "{}",
+	"return-type": "json",
+	"interval": 60,
+	"exec": "python3 $HOME/.config/waybar/scripts/zulip_unread.py",
+	"escape": true,
+	"tooltip": true,
+	"on-click": "brave --new-window https://thetavision.zulipchat.com"
 }
 }

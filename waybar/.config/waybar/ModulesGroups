@@ -136,4 +136,11 @@
         "custom/reboot"
       ]
 },
+"group/unread": {
+	"orientation": "inherit",
+	"modules": [
+		"custom/gmail",
+		"custom/zulip"
+	]
+},
 }
