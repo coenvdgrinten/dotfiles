@@ -37,6 +37,7 @@
 	"custom/separator#blank",
   "group/app_drawer",
 	"group/notify",
+	"custom/gmail",
 	"hyprland/workspaces#rw",
 	"clock",
 	"custom/weather",

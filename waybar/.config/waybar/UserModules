@@ -6,5 +6,14 @@
 /* IMPORTANT, be mindful with , or ". else waybar will not start */
 
 {
-
+"custom/gmail": {
+	"format": "{}",
+	"return-type": "json",
+	"interval": 120,
+	"exec": "python3 $HOME/.config/waybar/scripts/gmail_unread.py",
+	"escape": true,
+	"tooltip": true,
+	"on-click": "brave --new-window https://mail.google.com",
+	"on-click-right": "brave --new-window https://mail.google.com"
+}
 }
