@@ -14,14 +14,5 @@
 	"escape": true,
 	"tooltip": true,
 	"on-click": "brave --new-window https://mail.google.com"
-},
-"custom/zulip": {
-	"format": "{}",
-	"return-type": "json",
-	"interval": 60,
-	"exec": "python3 $HOME/.config/waybar/scripts/zulip_unread.py",
-	"escape": true,
-	"tooltip": true,
-	"on-click": "brave --new-window https://thetavision.zulipchat.com"
 }
 }

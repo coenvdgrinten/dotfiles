@@ -245,6 +245,7 @@
 		"class<dev.zed.Zed>": "󰵁",
 		"class<codeblocks>": "󰅩 ",
 		"title<.*github.*>": " ",
+		"title<.*Plane.*>": "󱧶 ",
 		"class<mousepad>": " ",
 		"class<libreoffice-writer>": " ",
 		"class<libreoffice-startcenter>": "󰏆 ",
