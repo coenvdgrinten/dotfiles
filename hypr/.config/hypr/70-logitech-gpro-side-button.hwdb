@@ -1,0 +1,12 @@
+# Remap Logitech G Pro Wireless mouse side button (BTN_SIDE) to Super/LWin key
+# This allows using the side mouse button as a modifier key in Hyprland
+#
+# Install by running:
+#   sudo cp 70-logitech-gpro-side-button.hwdb /etc/udev/hwdb.d/
+#   sudo systemd-hwdb update
+#   sudo udevadm trigger
+#
+# Then disconnect and reconnect the mouse (or reboot)
+
+evdev:input:b*v0000046Dp00004079*
+    EVKEY:map scn BTN_SIDE  KEY_LEFTMETA

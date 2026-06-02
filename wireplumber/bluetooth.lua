@@ -1,0 +1,13 @@
+-- WirePlumber Bluetooth configuration for stable Pixel Buds connection
+--
+-- NOTE: This file is intentionally minimal.
+-- The main fix for the disconnect/reconnect loop is the btusb.conf kernel module
+-- config (disabling USB autosuspend), NOT a WirePlumber Lua override.
+--
+-- WirePlumber's default Bluetooth handling is generally correct.
+-- Overriding it with custom Lua often breaks audio entirely.
+--
+-- Install (only if needed):
+--   mkdir -p ~/.config/wireplumber
+--   cp wireplumber/bluetooth.lua ~/.config/wireplumber/
+--   systemctl --user restart wireplumber
